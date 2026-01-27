@@ -1,0 +1,96 @@
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "devdash-cli"
+version = "1.0.0"
+description = "DevDash - Beautiful Developer Dashboard CLI for terminal"
+readme = "README.md"
+license = {text = "MIT"}
+authors = [
+    {name = "DAXXTEAM", email = "daxxteam@proton.me"}
+]
+maintainers = [
+    {name = "DAXXTEAM", email = "daxxteam@proton.me"}
+]
+keywords = [
+    "developer",
+    "dashboard",
+    "cli",
+    "terminal",
+    "git",
+    "system",
+    "monitoring",
+    "productivity",
+    "devtools",
+    "tui"
+]
+classifiers = [
+    "Development Status :: 5 - Production/Stable",
+    "Environment :: Console",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+    "Topic :: System :: Monitoring",
+    "Topic :: Utilities"
+]
+requires-python = ">=3.8"
+dependencies = [
+    "rich>=13.0.0",
+    "typer>=0.9.0",
+    "psutil>=5.9.0",
+    "typing-extensions>=4.0.0"
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=7.0.0",
+    "pytest-cov>=4.0.0",
+    "black>=23.0.0",
+    "isort>=5.12.0",
+    "mypy>=1.0.0"
+]
+
+[project.urls]
+Homepage = "https://github.com/DAXXTEAM/devdash"
+Documentation = "https://github.com/DAXXTEAM/devdash#readme"
+Repository = "https://github.com/DAXXTEAM/devdash.git"
+Issues = "https://github.com/DAXXTEAM/devdash/issues"
+Changelog = "https://github.com/DAXXTEAM/devdash/releases"
+
+[project.scripts]
+devdash = "devdash.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["devdash*"]
+
+[tool.setuptools.package-data]
+devdash = ["py.typed"]
+
+[tool.black]
+line-length = 100
+target-version = ["py38", "py39", "py310", "py311", "py312"]
+
+[tool.isort]
+profile = "black"
+line_length = 100
+
+[tool.mypy]
+python_version = "3.8"
+warn_return_any = true
+warn_unused_configs = true
+ignore_missing_imports = true
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = ["test_*.py"]
+addopts = "-v --cov=devdash --cov-report=term-missing"
